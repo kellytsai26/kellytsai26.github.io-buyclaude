@@ -3,48 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude 方案採購對照表</title>
+    <title>Claude 方案採購比較表</title>
     <style>
         :root {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --accent: #e11d48;
+            --brand-color: #1a202c;
+            --sub-brand: #2d3748;
+            --accent-blue: #3182ce;
+            --text-main: #2d3748;
+            --bg-light: #f7fafc;
             --border: #e2e8f0;
-            --header-bg: #1e293b;
         }
 
         body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-            background-color: var(--bg-color);
-            color: #1e293b;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             margin: 0;
-            padding: 40px 20px;
+            padding: 50px 20px;
             display: flex;
             justify-content: center;
         }
 
-        .container {
+        .dashboard {
             width: 100%;
-            max-width: 1100px;
-        }
-
-        .page-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 40px;
-            color: var(--header-bg);
-            letter-spacing: -0.025em;
-        }
-
-        .table-container {
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             border: 1px solid var(--border);
+        }
+
+        .dashboard-header {
+            background-color: var(--brand-color);
+            padding: 24px 32px;
+            border-bottom: 4px solid var(--accent-blue);
+        }
+
+        .dashboard-header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         table {
@@ -53,189 +54,16 @@
             table-layout: fixed;
         }
 
-        /* 表頭樣式 */
+        /* 標頭樣式 */
         thead th {
-            background-color: var(--header-bg);
-            color: white;
-            padding: 24px 16px;
-            font-weight: 600;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-
-        thead th:last-child { border-right: none; }
-
-        .sub-group {
-            background-color: #334155;
-            font-size: 0.85rem;
-            font-weight: 400;
-            padding: 10px;
-        }
-
-        /* 內容樣式 */
-        th.row-category {
-            background-color: #f1f5f9;
-            color: var(--secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 15px;
-            text-align: center;
+            background-color: #ffffff;
+            color: var(--brand-color);
+            padding: 30px 15px;
+            font-size: 18px;
+            font-weight: 800;
             border-bottom: 2px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
-        td {
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* 價格強調 */
-        .price-box {
-            font-weight: 700;
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        .price-sub {
-            display: block;
-            color: var(--secondary);
-            font-size: 0.8rem;
-            font-weight: 400;
-            margin-top: 4px;
-        }
-
-        /* 區塊對齊與裝飾 */
-        .center { text-align: center; }
-        
-        .feature-list {
-            margin: 0;
-            padding-left: 1.2rem;
-        }
-
-        .feature-list li {
-            margin-bottom: 8px;
-        }
-
-        .summary {
-            font-size: 0.875rem;
-            color: #475569;
-        }
-
-        /* 方案別顏色條 */
-        .indicator {
-            height: 4px;
-            width: 100%;
-            display: block;
-            margin-bottom: 10px;
-            border-radius: 2px;
-        }
-        .bg-free { background: #94a3b8; }
-        .bg-pro { background: #3b82f6; }
-        .bg-max { background: #8b5cf6; }
-        .bg-team { background: #10b981; }
-
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background-color: #f8fafc; }
-
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1 class="page-title">Claude 採購方案比較清單</h1>
-    
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 15%;">項目</th>
-                    <th><span class="indicator bg-free"></span>免費</th>
-                    <th><span class="indicator bg-pro"></span>Pro</th>
-                    <th><span class="indicator bg-max"></span>Max</th>
-                    <th colspan="2"><span class="indicator bg-team"></span>Team</th>
-                </tr>
-                <tr>
-                    <th class="sub-group"></th>
-                    <th class="sub-group">Standard</th>
-                    <th class="sub-group">Plus</th>
-                    <th class="sub-group">Enterprise</th>
-                    <th class="sub-group">標準</th>
-                    <th class="sub-group">Premium</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th class="row-category" colspan="6">費用預算</th>
-                </tr>
-                <tr>
-                    <td class="center" style="font-weight: 600;">價格</td>
-                    <td class="center"><span class="price-box">$0</span></td>
-                    <td class="center">
-                        <span class="price-box">$20 / 月</span>
-                        <span class="price-sub">(約 NT$600)</span>
-                    </td>
-                    <td>
-                        • Max 5x：<span class="price-box">$100 / 月</span><br>
-                        • Max 20x：<span class="price-box">$200 / 月</span>
-                    </td>
-                    <td>
-                        • <span class="price-box">$25 / 月 / 位</span><br>
-                        • <span class="price-box">$20 / 月 / 位 (年繳)</span>
-                    </td>
-                    <td>
-                        • <span class="price-box">$125 / 月 / 位</span><br>
-                        • <span class="price-box">$100 / 月 / 位 (年繳)</span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th class="row-category" colspan="6">服務規格</th>
-                </tr>
-                <tr>
-                    <td class="center" style="font-weight: 600;">使用容量</td>
-                    <td>基本額度，每 5 小時重置一次</td>
-                    <td>免費版的 5 倍</td>
-                    <td>
-                        • Max 5x：Pro 的 5 倍<br>
-                        • Max 20x：Pro 的 20 倍
-                    </td>
-                    <td>多於 Pro</td>
-                    <td>標準的 5 倍</td>
-                </tr>
-
-                <tr>
-                    <th class="row-category" colspan="6">適用評估</th>
-                </tr>
-                <tr>
-                    <td class="center" style="font-weight: 600;">適合對象</td>
-                    <td class="center">個人</td>
-                    <td class="center">個人 / 小型團隊</td>
-                    <td class="center">大型企業</td>
-                    <td colspan="2">
-                        <ul class="feature-list">
-                            <li>多個使用者共享一個帳戶</li>
-                            <li>具共同協作及集中管理需求</li>
-                            <li>至少 5 個成員</li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th class="row-category" colspan="6">方案分析</th>
-                </tr>
-                <tr>
-                    <td class="center" style="font-weight: 600;">總結</td>
-                    <td class="summary">零成本體驗 Claude 核心對話能力，適合個人或初次接觸的用戶。</td>
-                    <td class="summary">解鎖進階模型與開發工具，適合個人用戶與提升生產力的使用情境。</td>
-                    <td class="summary">專為高重度使用者設計，提供無檢流量、最高效能與中斷的工作條件。</td>
-                    <td colspan="2" class="summary">提供團隊共享、管理與隱私保護，協助組織安全且高效地協作使用 Claude。</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-</body>
-</html>
+        .team-header {
+            background-color
