@@ -12,6 +12,8 @@
             --text-main: #2d3748;
             --bg-light: #f7fafc;
             --border: #e2e8f0;
+            --pro-color: #f6ad55;
+            --team-color: #4fd1c5;
         }
 
         body {
@@ -65,5 +67,104 @@
             border-right: 1px solid var(--border);
         }
 
-        .team-header {
-            background-color
+        .feature-col { width: 25%; background-color: #fdfdfd; }
+        .free-header { border-top: 4px solid #cbd5e0; }
+        .pro-header { border-top: 4px solid var(--pro-color); background-color: #fffaf0; }
+        .team-header { border-top: 4px solid var(--team-color); background-color: #f0fff4; }
+
+        th, td {
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+
+        td:last-child, th:last-child {
+            border-right: none;
+        }
+
+        .feature-name {
+            text-align: left;
+            font-weight: 600;
+            color: var(--sub-brand);
+            padding-left: 25px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .period {
+            font-size: 14px;
+            color: #718096;
+            font-weight: normal;
+        }
+
+        tr:hover {
+            background-color: #fcfcfc;
+        }
+
+        .check { color: #48bb78; font-weight: bold; }
+        .uncheck { color: #cbd5e0; }
+
+        @media (max-width: 768px) {
+            table { font-size: 14px; }
+            .feature-name { padding-left: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <div class="dashboard-header">
+        <h1>Claude 方案採購比較表</h1>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="feature-col">功能項目</th>
+                <th class="free-header">Free<br><span class="price">$0</span><span class="period">永久免費</span></th>
+                <th class="pro-header">Pro<br><span class="price">$20</span><span class="period">每月 / 每用戶</span></th>
+                <th class="team-header">Team<br><span class="price">$25</span><span class="period">每月 / 每用戶 (需5人以上)</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="feature-name">最新模型存取 (Claude 3.5 Sonnet)</td>
+                <td><span class="check">✔</span></td>
+                <td><span class="check">✔</span></td>
+                <td><span class="check">✔</span></td>
+            </tr>
+            <tr>
+                <td class="feature-name">使用量限制</td>
+                <td>一般使用量</td>
+                <td>5 倍 Free 版使用量</td>
+                <td>比 Pro 版更高使用量</td>
+            </tr>
+            <tr>
+                <td class="feature-name">Claude Projects (專案功能)</td>
+                <td><span class="uncheck">✘</span></td>
+                <td><span class="check">✔</span></td>
+                <td><span class="check">✔</span></td>
+            </tr>
+            <tr>
+                <td class="feature-name">優先存取權 (高峰時段)</td>
+                <td><span class="uncheck">✘</span></td>
+                <td><span class="check">✔</span></td>
+                <td><span class="check">✔</span></td>
+            </tr>
+            <tr>
+                <td class="feature-name">後台管理與帳單控制</td>
+                <td><span class="uncheck">✘</span></td>
+                <td><span class="uncheck">✘</span></td>
+                <td><span class="check">✔</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
