@@ -3,26 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude 核心功能解析</title>
+    <title>Claude 初學者功能導覽</title>
     <style>
         :root {
-            --primary: #1f4a7c;
-            --accent: #f57c00;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --primary-blue: #1f4a7c;
+            --accent-orange: #f57c00;
+            --bg-gray: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
             --border: #e2e8f0;
-            --code-dark: #0f172a;
-            --cowork-blue: #0369a1;
+            --skill-color: #10b981;
+            --code-color: #0f172a;
+            --cowork-color: #0ea5e9;
         }
 
         * { box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
             line-height: 1.7;
             margin: 0;
             padding: 40px 20px;
@@ -33,201 +34,241 @@
             margin: 0 auto;
         }
 
-        h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            border-left: 6px solid var(--accent);
-            padding-left: 15px;
-            margin-top: 60px;
-            margin-bottom: 30px;
+        header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        h3 {
-            font-size: 1.4rem;
-            margin-top: 0;
-            color: var(--primary);
-        }
-
-        p { margin: 10px 0; }
-
-        /* 核心功能 1 - Skill 佈局 */
-        .skill-section {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            margin-bottom: 40px;
-        }
-
-        .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .mode-card {
-            background: #f1f5f9;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: transform 0.2s;
-        }
-
-        .mode-card:hover {
-            transform: translateY(-3px);
-            background: #fffaf0;
-            border-color: var(--accent);
-        }
-
-        .mode-title {
-            display: block;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .supplement {
-            background: #eef2ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            font-size: 0.95rem;
-            border: 1px dashed var(--primary);
-        }
-
-        /* 核心功能 2 & 3 - 卡片佈局 */
-        .feature-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            border: 1px solid var(--border);
-        }
-
-        .feature-card.code { border-top: 8px solid var(--code-dark); }
-        .feature-card.coworker { border-top: 8px solid var(--cowork-blue); }
-
-        .ability-list {
-            margin: 25px 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .ability-list li {
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
             margin-bottom: 15px;
-            padding-left: 28px;
-            position: relative;
         }
 
-        .ability-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
+        .intro-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .scenario-box {
-            background: #f8fafc;
-            padding: 12px 20px;
-            border-radius: 8px;
-            display: inline-block;
-            font-weight: 600;
-            color: var(--primary);
+        /* 功能卡片設計 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px;
             border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-card h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card h2 { color: var(--skill-color); }
+        .code-card h2 { color: var(--code-color); }
+        .cowork-card h2 { color: var(--cowork-color); }
+
+        .tagline {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+
+        li { margin-bottom: 8px; }
+
+        .efficiency-tip {
+            border-top: 1px dashed var(--border);
+            margin-top: 20px;
+            padding-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* 表格樣式 */
+        .table-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+        }
+
+        .table-wrapper {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f8fafc;
+            padding: 20px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        /* 腳註提示 */
+        .gemini-note {
+            background-color: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+        .gemini-note h4 {
+            margin-top: 0;
+            color: #9a3412;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         @media (max-width: 768px) {
-            body { padding: 20px 15px; }
-            h2 { font-size: 1.6rem; }
-            .skill-grid { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            table { font-size: 14px; }
+            th, td { padding: 12px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <header>
+        <h1>歡迎來到 Claude 初學者指南</h1>
+        <p class="intro-text">Claude 不僅僅是聊天機器人，透過以下三項進階功能，它能成為你工作中最得力的虛擬員工。</p>
+    </header>
 
-    <section>
-        <h2>核心功能 1 - Skill</h2>
-        <div class="skill-section">
-            <p><strong>Skill = AI 的「外掛知識包」或「專業手冊」</strong></p>
-            
-            <div class="skill-grid">
-                <div class="mode-card">
-                    <span class="mode-title">模式一：知識注入</span>
-                    <p><strong>內容：</strong>將團隊的規範、風格指南、領域知識寫成 Skill，讓 Claude 在每次對話中自動套用。</p>
-                    <p><strong>案例：</strong>將公司的 API 設計規範、品牌文案風格、程式碼命名規則存成 Skill，Claude 每次寫 code 都能即時對齊。</p>
-                </div>
-
-                <div class="mode-card">
-                    <span class="mode-title">模式二：任務自動化</span>
-                    <p><strong>內容：</strong>將重複性高、格式固定的任務定義成 Skill。</p>
-                    <p><strong>案例：</strong>每週自動產出 KPI 報告、費用報表，並依指定規則完成。</p>
-                </div>
-
-                <div class="mode-card">
-                    <span class="mode-title">模式三：腳本執行</span>
-                    <p><strong>內容：</strong>以程式或流程腳本方式，讓 Claude 具備超級提示能力。</p>
-                    <p><strong>案例：</strong>一鍵產出互動式教學頁，或自動產生 API 文件、HTML 視覺化報告。</p>
-                </div>
-
-                <div class="mode-card">
-                    <span class="mode-title">模式四：團隊標準化</span>
-                    <p><strong>內容：</strong>將公司常用語言、審核規範、測試覆蓋率要求寫成 Skill。</p>
-                    <p><strong>案例：</strong>程式碼審查、行銷文案、資料清理皆可自動套用團隊規範。</p>
-                </div>
-
-                <div class="mode-card">
-                    <span class="mode-title">模式五：跨工具整合</span>
-                    <p><strong>內容：</strong>結合 Gmail、Google Drive、Calendar、Sheets 等。</p>
-                    <p><strong>案例：</strong>讀取 Gmail → 更新 Sheets → 建立 Calendar 事件，一次完成完整流程。</p>
-                </div>
-            </div>
-
-            <div class="supplement">
-                <strong>補充說明：</strong><br>
-                Skill 類似「一段被 Claude 在特定情境自動執行的 SOP」，<br>
-                Agent 則為可自主規劃與執行下一步的進階程式。
+    <div class="feature-grid">
+        <div class="feature-card skill-card">
+            <span class="card-icon">🧠</span>
+            <h2>Claude Skills</h2>
+            <span class="tagline">你的「專業手冊」與「自動 SOP」</span>
+            <p><strong>它是什麼：</strong>本質上是 AI 的「外掛知識包」。你可以將特定格式、公司規範定義成一個 Skill。</p>
+            <p><strong>應用場景：</strong></p>
+            <ul>
+                <li><strong>品牌小編：</strong>存入品牌語氣指南，確保文案風格統一。</li>
+                <li><strong>固定報表：</strong>丟入數據，按預設格式自動產出分析。</li>
+            </ul>
+            <div class="efficiency-tip">
+                <strong>如何提升效率：</strong>省去重複貼指令的時間，確保產出品質高度標準化。
             </div>
         </div>
-    </section>
 
-    <section>
-        <h2>核心功能 2 - Claude Code：終端機裡的開發專家</h2>
-        <div class="feature-card code">
-            <p>這不是一個網頁介面，而是一個 CLI（命令列介面）工具。它直接運行在你的開發環境（終端機）中，擁有讀取檔案、執行指令、甚至幫你修復 Bug 的權限。</p>
-            
-            <p><strong>核心能力：</strong></p>
-            <ul class="ability-list">
-                <li><strong>主動式開發：</strong>你可以輸入「幫我把這個專案的 React 版本升級，並修復所有衝突」，它會自動掃描檔案、執行測試、找出錯誤並修正，最後把結果呈現給你。</li>
-                <li><strong>上下文深度理解：</strong>它能掃描整個程式碼庫（Codebase），理解不同檔案之間的邏輯關聯，不像網頁版只能讀取你貼上的片段。</li>
-                <li><strong>自動執行測試：</strong>它不僅寫代碼，還會幫你跑 npm test 或 pytest，確認代碼能跑通才收工。</li>
+        <div class="feature-card code-card">
+            <span class="card-icon">💻</span>
+            <h2>Claude Code</h2>
+            <span class="tagline">住在終端機裡的「AI 工程師」</span>
+            <p><strong>它是什麼：</strong>CLI 工具，運行在開發者終端機裡。擁有「手」的權限，可直接讀寫檔案。 </p>
+            <p><strong>應用場景：</strong></p>
+            <ul>
+                <li><strong>大型重構：</strong>自動掃描並更換專案中的過時套件。</li>
+                <li><strong>修復 Bug：</strong>輸入報錯訊息，AI 會自行定位、修改並測試。</li>
             </ul>
-            
-            <div class="scenario-box">適合場景：大規模重構、修復複雜 Bug、撰寫單元測試。</div>
+            <div class="efficiency-tip">
+                <strong>如何提升效率：</strong>讓 AI 處理代碼搬運瑣事，你只需專注於邏輯架構。
+            </div>
         </div>
-    </section>
 
-    <section>
-        <h2>核心功能 3 - Claude Coworker：你的 AI 數位同事</h2>
-        <div class="feature-card coworker">
-            <p>這項功能（常出現在 Claude Max 或 Enterprise 方案中）更強調「協作」與「多工處理」。它不再只是回答問題，而是像一個真正的同事一樣，參與到你的專案流程中。</p>
-            
-            <p><strong>核心能力：</strong></p>
-            <ul class="ability-list">
-                <li><strong>自主規劃任務：</strong>如果你給它一個大目標（例如：分析這季的財務報表並產出 PPT），它會自己拆解步驟：1. 讀取 Excel -> 2. 彙整數據 -> 3. 搜尋行業基準 -> 4. 產出文案。</li>
-                <li><strong>跨工具連動：</strong>透過 Connectors 功能，它可以存取你的 Google Drive、Slack、GitHub 等工具，實現真正的跨平台辦公。</li>
-                <li><strong>長期記憶與對齊：</strong>它能記住團隊的專業偏好、文件規範（Style Guide），確保產出的內容符合公司標準。</li>
+        <div class="feature-card cowork-card">
+            <span class="card-icon">🤝</span>
+            <h2>Claude Coworker</h2>
+            <span class="tagline">你的「AI 數位同事」</span>
+            <p><strong>它是什麼：</strong>具備自主規劃能力的代理人。擅長處理跨工具、多步驟的複雜任務。</p>
+            <p><strong>應用場景：</strong></p>
+            <ul>
+                <li><strong>市場調研：</strong>自主搜尋資訊、翻閱雲端文件，整理成簡報草稿。</li>
+                <li><strong>專案管理：</strong>連結 Slack，主動回報進度並提醒待辦事項。</li>
             </ul>
-            
-            <div class="scenario-box">適合場景：專案管理、市場研究分析、自動化繁瑣的行政流程。</div>
+            <div class="efficiency-tip">
+                <strong>如何提升效率：</strong>你只需給予「目標」，AI 會自動規劃路徑並執行。
+            </div>
         </div>
-    </section>
+    </div>
 
+    <div class="table-section">
+        <h2>💡 初學者快速對照表</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>功能</th>
+                        <th>角色定位</th>
+                        <th>核心優勢</th>
+                        <th>誰最適合用？</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Skills</strong></td>
+                        <td>專家腦</td>
+                        <td>標準化產出</td>
+                        <td>行銷、營運、一般商務</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude Code</strong></td>
+                        <td>技術手</td>
+                        <td>自動化修檔</td>
+                        <td>工程師、數據分析師</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coworker</strong></td>
+                        <td>辦公室經理</td>
+                        <td>規劃複雜任務</td>
+                        <td>經理人、專案經理、行政</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="gemini-note">
+        <h4>✨ Gemini 的小叮嚀</h4>
+        <p>作為初學者，建議先從 <strong>Skills</strong> 玩起，把你自己最常用、最煩人的寫作或整理格式存下來。當你發現 Claude 越來越懂你、不需要多廢話時，那就是你效率翻倍的開始！</p>
+    </div>
 </div>
 
 </body>
